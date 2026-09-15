@@ -1,0 +1,96 @@
+#include <stdio.h>
+
+int main()
+{
+    int arr[100], n = 0;
+    int choice, pos, value, i;
+
+    while(1)
+    {
+        printf("\n\n--- MENU ---");
+        printf("\n1. Insertion");
+        printf("\n2. Deletion");
+        printf("\n3. Display");
+        printf("\n4. Exit");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            // Insertion
+            case 1:
+                printf("Enter position: ");
+                scanf("%d", &pos);
+
+                printf("Enter value: ");
+                scanf("%d", &value);
+
+                if(pos < 1 || pos > n + 1)
+                {
+                    printf("Invalid position!");
+                }
+                else
+                {
+                    for(i = n; i >= pos; i--)
+                    {
+                        arr[i] = arr[i - 1];
+                    }
+
+                    arr[pos - 1] = value;
+                    n++;
+
+                    printf("Element inserted successfully.");
+                }
+                break;
+
+            // Deletion
+            case 2:
+                printf("Enter position to delete: ");
+                scanf("%d", &pos);
+
+                if(pos < 1 || pos > n)
+                {
+                    printf("Invalid position!");
+                }
+                else
+                {
+                    for(i = pos - 1; i < n - 1; i++)
+                    {
+                        arr[i] = arr[i + 1];
+                    }
+
+                    n--;
+
+                    printf("Element deleted successfully.");
+                }
+                break;
+
+            // Display
+            case 3:
+                if(n == 0)
+                {
+                    printf("Array is empty.");
+                }
+                else
+                {
+                    printf("Array elements: ");
+
+                    for(i = 0; i < n; i++)
+                    {
+                        printf("%d ", arr[i]);
+                    }
+                }
+                break;
+
+            // Exit
+            case 4:
+                return 0;
+
+            default:
+                printf("Invalid choice!");
+        }
+    }
+
+    return 0;
+}
